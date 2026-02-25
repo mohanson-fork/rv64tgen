@@ -60,6 +60,22 @@ instruction_rule_i = [
     ['sraw', ['r', 'r', 'r']],
 ]
 
+instruction_rule_m = [
+    ['mul', ['r', 'r', 'r']],
+    ['mulh', ['r', 'r', 'r']],
+    ['mulhsu', ['r', 'r', 'r']],
+    ['mulhu', ['r', 'r', 'r']],
+    ['div', ['r', 'r', 'r']],
+    ['divu', ['r', 'r', 'r']],
+    ['rem', ['r', 'r', 'r']],
+    ['remu', ['r', 'r', 'r']],
+    ['mulw', ['r', 'r', 'r']],
+    ['divw', ['r', 'r', 'r']],
+    ['divuw', ['r', 'r', 'r']],
+    ['remw', ['r', 'r', 'r']],
+    ['remuw', ['r', 'r', 'r']],
+]
+
 instruction_rule_b = [
     ['add.uw', ['r', 'r', 'r']],
     ['andn', ['r', 'r', 'r']],

@@ -58,6 +58,20 @@ class Tester:
         self.writer.line(f'{opcode:<9} {args_string}')
         self.writer.line(f'add       a0, a0, {args[0]}')
 
+    def rand_instruction_m(self) -> None:
+        choose_rule = random.choice(convention.instruction_rule_m)
+        opcode = choose_rule[0]
+        args = []
+        for i in choose_rule[1]:
+            match i:
+                case 'r':
+                    args.append(self.rand_register())
+                case _:
+                    assert 0
+        args_string = ', '.join(args)
+        self.writer.line(f'{opcode:<9} {args_string}')
+        self.writer.line(f'add       a0, a0, {args[0]}')
+
     def rand_instruction_b(self) -> None:
         choose_rule = random.choice(convention.instruction_rule_b)
         opcode = choose_rule[0]
@@ -79,6 +93,7 @@ class Tester:
     def rand_instruction(self) -> None:
         return random.choice([
             self.rand_instruction_i,
+            self.rand_instruction_m,
             self.rand_instruction_b,
         ])()
 
