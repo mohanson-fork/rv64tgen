@@ -14,7 +14,6 @@ register = [
     's8', 's9', 's10', 's11',
     't3', 't4', 't5', 't6',
 ]
-register.remove('zero')
 register.remove('a0')
 
 boundary_uint = []
@@ -27,6 +26,39 @@ for i in range(0, 64):
     n = 0xffffffffffffffff >> i
     boundary_uint.append(n)
     boundary_uint.append(n << i)
+
+instruction_rule_i = [
+    ['lui', ['r', 'u20']],
+    ['auipc', ['r', 'u20']],
+    ['addi', ['r', 'r', 'i12']],
+    ['slti', ['r', 'r', 'i12']],
+    ['sltiu', ['r', 'r', 'i12']],
+    ['xori', ['r', 'r', 'i12']],
+    ['ori', ['r', 'r', 'i12']],
+    ['andi', ['r', 'r', 'i12']],
+    ['slli', ['r', 'r', 'u6']],
+    ['srli', ['r', 'r', 'u6']],
+    ['srai', ['r', 'r', 'u6']],
+    ['add', ['r', 'r', 'r']],
+    ['sub', ['r', 'r', 'r']],
+    ['sll', ['r', 'r', 'r']],
+    ['slt', ['r', 'r', 'r']],
+    ['sltu', ['r', 'r', 'r']],
+    ['xor', ['r', 'r', 'r']],
+    ['srl', ['r', 'r', 'r']],
+    ['sra', ['r', 'r', 'r']],
+    ['or', ['r', 'r', 'r']],
+    ['and', ['r', 'r', 'r']],
+    ['addiw', ['r', 'r', 'i12']],
+    ['slliw', ['r', 'r', 'u5']],
+    ['srliw', ['r', 'r', 'u5']],
+    ['sraiw', ['r', 'r', 'u5']],
+    ['addw', ['r', 'r', 'r']],
+    ['subw', ['r', 'r', 'r']],
+    ['sllw', ['r', 'r', 'r']],
+    ['srlw', ['r', 'r', 'r']],
+    ['sraw', ['r', 'r', 'r']],
+]
 
 instruction_rule_b = [
     ['add.uw', ['r', 'r', 'r']],

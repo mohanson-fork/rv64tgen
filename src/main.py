@@ -4,7 +4,7 @@ import common
 import convention
 
 
-def main_b():
+def main():
     for _ in range(1 << 32):
         tester = common.Tester()
         tester.tgen()
@@ -23,4 +23,4 @@ def main_b():
 
 
 if __name__ == '__main__':
-    main_b()
+    main()
