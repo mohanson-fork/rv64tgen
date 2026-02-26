@@ -46,6 +46,8 @@ class Tester:
                     args.append(self.rand_register())
                 case 'i12':
                     args.append(str((self.rand_u64() % (1 << 12)) - (1 << 11)))
+                case 'i12(a1)':
+                    args.append(str((self.rand_u64() % (1 << 12)) - (1 << 11)) + '(a1)')
                 case 'u5':
                     args.append(str(self.rand_u64() % 32))
                 case 'u6':
@@ -98,10 +100,23 @@ class Tester:
         ])()
 
     def tgen(self) -> None:
+        self.writer.line('.section .data')
+        self.writer.line('messy:')
+        self.writer.mr()
+        for _ in range(128):
+            self.writer.line(f'.quad {self.rand_u64()}, {self.rand_u64()}, {self.rand_u64()}, {self.rand_u64()}')
+        self.writer.ml()
+        self.writer.line('')
+
         self.writer.line('.global _start')
         self.writer.line('.section .text')
         self.writer.line('_start:')
         self.writer.mr()
+
+        self.writer.line('li        a0, 0')
+        self.writer.line('la        a1, messy')
+        self.writer.line('addi      a1, a1, 1024')
+        self.writer.line('addi      a1, a1, 1024')
 
         for _ in range(convention.conf_loop_l1):
             for i in convention.register:

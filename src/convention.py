@@ -15,6 +15,7 @@ register = [
     't3', 't4', 't5', 't6',
 ]
 register.remove('a0')
+register.remove('a1')
 
 boundary_uint = []
 
@@ -30,6 +31,16 @@ for i in range(0, 64):
 instruction_rule_i = [
     ['lui', ['r', 'u20']],
     ['auipc', ['r', 'u20']],
+    ['lb', ['r', 'i12(a1)']],
+    ['lh', ['r', 'i12(a1)']],
+    ['lw', ['r', 'i12(a1)']],
+    ['ld', ['r', 'i12(a1)']],
+    ['lbu', ['r', 'i12(a1)']],
+    ['lhu', ['r', 'i12(a1)']],
+    ['lwu', ['r', 'i12(a1)']],
+    ['sb', ['r', 'i12(a1)']],
+    ['sw', ['r', 'i12(a1)']],
+    ['sd', ['r', 'i12(a1)']],
     ['addi', ['r', 'r', 'i12']],
     ['slti', ['r', 'r', 'i12']],
     ['sltiu', ['r', 'r', 'i12']],
